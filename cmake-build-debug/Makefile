@@ -129,6 +129,30 @@ OS/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/build
 .PHONY : OS/fast
 
+PipeGuide/main.o: PipeGuide/main.c.o
+.PHONY : PipeGuide/main.o
+
+# target to build an object file
+PipeGuide/main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/PipeGuide/main.c.o
+.PHONY : PipeGuide/main.c.o
+
+PipeGuide/main.i: PipeGuide/main.c.i
+.PHONY : PipeGuide/main.i
+
+# target to preprocess a source file
+PipeGuide/main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/PipeGuide/main.c.i
+.PHONY : PipeGuide/main.c.i
+
+PipeGuide/main.s: PipeGuide/main.c.s
+.PHONY : PipeGuide/main.s
+
+# target to generate assembly for a file
+PipeGuide/main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/PipeGuide/main.c.s
+.PHONY : PipeGuide/main.c.s
+
 c1.o: c1.c.o
 .PHONY : c1.o
 
@@ -234,6 +258,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... OS"
+	@echo "... PipeGuide/main.o"
+	@echo "... PipeGuide/main.i"
+	@echo "... PipeGuide/main.s"
 	@echo "... c1.o"
 	@echo "... c1.i"
 	@echo "... c1.s"

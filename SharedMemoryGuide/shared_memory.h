@@ -22,6 +22,6 @@ bool destroy_memory_block(char *filename);
 //all programs will share values below
 #define BLOCK_SIZE 4096
 #define  BLOCK_SIZE 4096
-#define FILENAME "writeshmm.c"
+#define FILENAME "writeshmem.c"
 
 #endif //OS_SHARED_MEMORY_H

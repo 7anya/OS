@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/OS.dir/PipeGuide/main.c.o"
   "CMakeFiles/OS.dir/c1.c.o"
   "CMakeFiles/OS.dir/c2.c.o"
   "CMakeFiles/OS.dir/c3.c.o"
