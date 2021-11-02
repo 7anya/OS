@@ -34,7 +34,7 @@ void *task(void *vargp)
         exit(EXIT_FAILURE);
 
     while ((read = getline(&line, &len, fp)) != -1 && n2>0) {
-        printf("Retrieved line of length %zu:\n", read);
+//        printf("Retrieved line of length %zu:\n", read);
         printf("%s", line);
         n2--;
     }
