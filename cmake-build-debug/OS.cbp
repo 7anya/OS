@@ -78,19 +78,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/tokoyama/Documents/OS/GuideToConditionalWait/main.c">
+			<Option target="OS"/>
+		</Unit>
 		<Unit filename="/home/tokoyama/Documents/OS/PipeGuide/main.c">
-			<Option target="OS"/>
-		</Unit>
-		<Unit filename="/home/tokoyama/Documents/OS/c1.c">
-			<Option target="OS"/>
-		</Unit>
-		<Unit filename="/home/tokoyama/Documents/OS/c2.c">
-			<Option target="OS"/>
-		</Unit>
-		<Unit filename="/home/tokoyama/Documents/OS/c3.c">
-			<Option target="OS"/>
-		</Unit>
-		<Unit filename="/home/tokoyama/Documents/OS/main.c">
 			<Option target="OS"/>
 		</Unit>
 		<Unit filename="/home/tokoyama/Documents/OS/CMakeLists.txt">

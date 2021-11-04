@@ -66,61 +66,9 @@ include CMakeFiles/OS.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/OS.dir/flags.make
 
-CMakeFiles/OS.dir/c1.c.o: CMakeFiles/OS.dir/flags.make
-CMakeFiles/OS.dir/c1.c.o: ../c1.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/OS.dir/c1.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OS.dir/c1.c.o -c /home/tokoyama/Documents/OS/c1.c
-
-CMakeFiles/OS.dir/c1.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OS.dir/c1.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/tokoyama/Documents/OS/c1.c > CMakeFiles/OS.dir/c1.c.i
-
-CMakeFiles/OS.dir/c1.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OS.dir/c1.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/tokoyama/Documents/OS/c1.c -o CMakeFiles/OS.dir/c1.c.s
-
-CMakeFiles/OS.dir/c2.c.o: CMakeFiles/OS.dir/flags.make
-CMakeFiles/OS.dir/c2.c.o: ../c2.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/OS.dir/c2.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OS.dir/c2.c.o -c /home/tokoyama/Documents/OS/c2.c
-
-CMakeFiles/OS.dir/c2.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OS.dir/c2.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/tokoyama/Documents/OS/c2.c > CMakeFiles/OS.dir/c2.c.i
-
-CMakeFiles/OS.dir/c2.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OS.dir/c2.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/tokoyama/Documents/OS/c2.c -o CMakeFiles/OS.dir/c2.c.s
-
-CMakeFiles/OS.dir/c3.c.o: CMakeFiles/OS.dir/flags.make
-CMakeFiles/OS.dir/c3.c.o: ../c3.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/OS.dir/c3.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OS.dir/c3.c.o -c /home/tokoyama/Documents/OS/c3.c
-
-CMakeFiles/OS.dir/c3.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OS.dir/c3.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/tokoyama/Documents/OS/c3.c > CMakeFiles/OS.dir/c3.c.i
-
-CMakeFiles/OS.dir/c3.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OS.dir/c3.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/tokoyama/Documents/OS/c3.c -o CMakeFiles/OS.dir/c3.c.s
-
-CMakeFiles/OS.dir/main.c.o: CMakeFiles/OS.dir/flags.make
-CMakeFiles/OS.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/OS.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OS.dir/main.c.o -c /home/tokoyama/Documents/OS/main.c
-
-CMakeFiles/OS.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OS.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/tokoyama/Documents/OS/main.c > CMakeFiles/OS.dir/main.c.i
-
-CMakeFiles/OS.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OS.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/tokoyama/Documents/OS/main.c -o CMakeFiles/OS.dir/main.c.s
-
 CMakeFiles/OS.dir/PipeGuide/main.c.o: CMakeFiles/OS.dir/flags.make
 CMakeFiles/OS.dir/PipeGuide/main.c.o: ../PipeGuide/main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/OS.dir/PipeGuide/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/OS.dir/PipeGuide/main.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OS.dir/PipeGuide/main.c.o -c /home/tokoyama/Documents/OS/PipeGuide/main.c
 
 CMakeFiles/OS.dir/PipeGuide/main.c.i: cmake_force
@@ -131,25 +79,32 @@ CMakeFiles/OS.dir/PipeGuide/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OS.dir/PipeGuide/main.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/tokoyama/Documents/OS/PipeGuide/main.c -o CMakeFiles/OS.dir/PipeGuide/main.c.s
 
+CMakeFiles/OS.dir/GuideToConditionalWait/main.c.o: CMakeFiles/OS.dir/flags.make
+CMakeFiles/OS.dir/GuideToConditionalWait/main.c.o: ../GuideToConditionalWait/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/OS.dir/GuideToConditionalWait/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OS.dir/GuideToConditionalWait/main.c.o -c /home/tokoyama/Documents/OS/GuideToConditionalWait/main.c
+
+CMakeFiles/OS.dir/GuideToConditionalWait/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OS.dir/GuideToConditionalWait/main.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/tokoyama/Documents/OS/GuideToConditionalWait/main.c > CMakeFiles/OS.dir/GuideToConditionalWait/main.c.i
+
+CMakeFiles/OS.dir/GuideToConditionalWait/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OS.dir/GuideToConditionalWait/main.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/tokoyama/Documents/OS/GuideToConditionalWait/main.c -o CMakeFiles/OS.dir/GuideToConditionalWait/main.c.s
+
 # Object files for target OS
 OS_OBJECTS = \
-"CMakeFiles/OS.dir/c1.c.o" \
-"CMakeFiles/OS.dir/c2.c.o" \
-"CMakeFiles/OS.dir/c3.c.o" \
-"CMakeFiles/OS.dir/main.c.o" \
-"CMakeFiles/OS.dir/PipeGuide/main.c.o"
+"CMakeFiles/OS.dir/PipeGuide/main.c.o" \
+"CMakeFiles/OS.dir/GuideToConditionalWait/main.c.o"
 
 # External object files for target OS
 OS_EXTERNAL_OBJECTS =
 
-OS: CMakeFiles/OS.dir/c1.c.o
-OS: CMakeFiles/OS.dir/c2.c.o
-OS: CMakeFiles/OS.dir/c3.c.o
-OS: CMakeFiles/OS.dir/main.c.o
 OS: CMakeFiles/OS.dir/PipeGuide/main.c.o
+OS: CMakeFiles/OS.dir/GuideToConditionalWait/main.c.o
 OS: CMakeFiles/OS.dir/build.make
 OS: CMakeFiles/OS.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable OS"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable OS"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/OS.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

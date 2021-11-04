@@ -129,6 +129,30 @@ OS/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/build
 .PHONY : OS/fast
 
+GuideToConditionalWait/main.o: GuideToConditionalWait/main.c.o
+.PHONY : GuideToConditionalWait/main.o
+
+# target to build an object file
+GuideToConditionalWait/main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/GuideToConditionalWait/main.c.o
+.PHONY : GuideToConditionalWait/main.c.o
+
+GuideToConditionalWait/main.i: GuideToConditionalWait/main.c.i
+.PHONY : GuideToConditionalWait/main.i
+
+# target to preprocess a source file
+GuideToConditionalWait/main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/GuideToConditionalWait/main.c.i
+.PHONY : GuideToConditionalWait/main.c.i
+
+GuideToConditionalWait/main.s: GuideToConditionalWait/main.c.s
+.PHONY : GuideToConditionalWait/main.s
+
+# target to generate assembly for a file
+GuideToConditionalWait/main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/GuideToConditionalWait/main.c.s
+.PHONY : GuideToConditionalWait/main.c.s
+
 PipeGuide/main.o: PipeGuide/main.c.o
 .PHONY : PipeGuide/main.o
 
@@ -153,102 +177,6 @@ PipeGuide/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/PipeGuide/main.c.s
 .PHONY : PipeGuide/main.c.s
 
-c1.o: c1.c.o
-.PHONY : c1.o
-
-# target to build an object file
-c1.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/c1.c.o
-.PHONY : c1.c.o
-
-c1.i: c1.c.i
-.PHONY : c1.i
-
-# target to preprocess a source file
-c1.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/c1.c.i
-.PHONY : c1.c.i
-
-c1.s: c1.c.s
-.PHONY : c1.s
-
-# target to generate assembly for a file
-c1.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/c1.c.s
-.PHONY : c1.c.s
-
-c2.o: c2.c.o
-.PHONY : c2.o
-
-# target to build an object file
-c2.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/c2.c.o
-.PHONY : c2.c.o
-
-c2.i: c2.c.i
-.PHONY : c2.i
-
-# target to preprocess a source file
-c2.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/c2.c.i
-.PHONY : c2.c.i
-
-c2.s: c2.c.s
-.PHONY : c2.s
-
-# target to generate assembly for a file
-c2.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/c2.c.s
-.PHONY : c2.c.s
-
-c3.o: c3.c.o
-.PHONY : c3.o
-
-# target to build an object file
-c3.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/c3.c.o
-.PHONY : c3.c.o
-
-c3.i: c3.c.i
-.PHONY : c3.i
-
-# target to preprocess a source file
-c3.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/c3.c.i
-.PHONY : c3.c.i
-
-c3.s: c3.c.s
-.PHONY : c3.s
-
-# target to generate assembly for a file
-c3.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/c3.c.s
-.PHONY : c3.c.s
-
-main.o: main.c.o
-.PHONY : main.o
-
-# target to build an object file
-main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/main.c.o
-.PHONY : main.c.o
-
-main.i: main.c.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/main.c.i
-.PHONY : main.c.i
-
-main.s: main.c.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/main.c.s
-.PHONY : main.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -258,21 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... OS"
+	@echo "... GuideToConditionalWait/main.o"
+	@echo "... GuideToConditionalWait/main.i"
+	@echo "... GuideToConditionalWait/main.s"
 	@echo "... PipeGuide/main.o"
 	@echo "... PipeGuide/main.i"
 	@echo "... PipeGuide/main.s"
-	@echo "... c1.o"
-	@echo "... c1.i"
-	@echo "... c1.s"
-	@echo "... c2.o"
-	@echo "... c2.i"
-	@echo "... c2.s"
-	@echo "... c3.o"
-	@echo "... c3.i"
-	@echo "... c3.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 .PHONY : help
 
 

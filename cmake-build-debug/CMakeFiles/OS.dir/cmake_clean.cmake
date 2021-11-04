@@ -1,9 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/OS.dir/GuideToConditionalWait/main.c.o"
   "CMakeFiles/OS.dir/PipeGuide/main.c.o"
-  "CMakeFiles/OS.dir/c1.c.o"
-  "CMakeFiles/OS.dir/c2.c.o"
-  "CMakeFiles/OS.dir/c3.c.o"
-  "CMakeFiles/OS.dir/main.c.o"
   "OS"
   "OS.pdb"
 )
