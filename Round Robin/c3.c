@@ -10,6 +10,13 @@
 #include <string.h>
 #include <unistd.h>  //Header file for sleep(). man 3 sleep for details.
 #include <pthread.h>
+#include <unistd.h>  //Header file for sleep(). man 3 sleep for details.
+#include <pthread.h>
+#include <pthread.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+#include "shared_memory.h"
 int n3=5;
 int fd[2];
 pthread_cond_t condShm;
@@ -20,25 +27,34 @@ char *readFromSharedMemory(char *filename) {
     char *block = attach_memory_block(filename, BLOCK_SIZE);
     if (block == NULL) {
         printf("ERROR couldnt get block \n");
-        return -1;
+        return NULL;
     }
-    printf("Reading:%s\n", block);
+    printf("30 Reading:%s\n", block);
+    char temp[10];
+    strcpy(temp, block);
+    printf("32 Reading:%s\n", temp);
 
     detach_memory_block(block);
-    return block;
+    printf("333 Reading:%s\n", temp);
+    char *t;
+    t[0] = temp[0];
+    return t;
 }
 
 
-char* readFromSharedMemoryOf(char name[3]) {
+char *readFromSharedMemoryOf(char name[3]) {
     if (strcmp(name, "c1") == 0) {
-        return readFromSharedMemory("sharedMemC1.c");
+        char *temp = readFromSharedMemory("sharedMemoryC1.c");
+        printf("40 %s\n", temp);
+        return temp;
 
-    } else if (strcmpi(name, "c2") == 0) {
-        return readFromSharedMemory("sharedMemC2.c");
+    } else if (strcmp(name, "c2") == 0) {
+        return readFromSharedMemory("sharedMemoryC3.c");
 
     } else
-        return readFromSharedMemory("sharedMemC3.c");
+        return readFromSharedMemory("sharedMemoryC3.c");
 }
+
 void writeToPipe(int fd[2],long long data)
 {
     close(fd[0]);
@@ -47,7 +63,15 @@ void writeToPipe(int fd[2],long long data)
 }
 void *task(void *vargp)
 {
-
+    printf("in task\n");
+//    block = readFromSharedMemoryOf("c1");
+    printf("57: %s\n", block);
+    pthread_mutex_lock(&mutexShm);
+    while (block[0] != '1') {
+        printf("C1 is waiting/sleeping\n");
+        pthread_cond_wait(&condShm, &mutexShm);
+    }
+    pthread_mutex_unlock(&mutexShm);
     long long sum=0;
     FILE * fp;
     char * line = NULL;
@@ -57,23 +81,27 @@ void *task(void *vargp)
     fp = fopen("numbers.txt", "r");
     if (fp == NULL)
         exit(EXIT_FAILURE);
-    while(*block!='1')
-    {
-        printf("C3 is waiting/sleeping\n")
-        pthread_cond_wait(condShm,mutexShm);
-    }
+//    while(*block!='1')
+//    {
+//        printf("C3 is waiting/sleeping\n")
+//        pthread_cond_wait(condShm,mutexShm);
+//    }
     while ((read = getline(&line, &len, fp)) != -1 && n3>0) {
 //        printf("Retrieved line of length %zu:\n", read);
 //        printf("%s", line);
         sum+= strtol(line,&ptr,10);
-        while(*block!='1')
-        {
-            printf("C3 is waiting/sleeping\n")
-            pthread_cond_wait(condShm,mutexShm);
+        pthread_mutex_lock(&mutexShm);
+
+        while (block[0] != '1') {
+            printf("C3 is waiting/sleeping\n");
+            pthread_cond_signal(&condShm);
+//            pthread_mutex_unlock(&mutexShm);
+            pthread_cond_wait(&condShm, &mutexShm);
         }
+        pthread_mutex_unlock(&mutexShm);
         n3--;
     }
-//    printf("the sum is :%lld",sum);
+    printf("the sum is :%lld",sum);
     writeToPipe(fd,sum);
     fclose(fp);
     if (line)
@@ -85,8 +113,19 @@ void *monitor(void *vargp){
 
     //Lets read from shrared memeory of C1;
 //    every iterval do this
-    block= readFromSharedMemoryOf("c3");
-    pthread_cond_signal(condShm);
+    printf("in monitor\n");
+
+    while (1) {
+        pthread_mutex_lock(&mutexShm);
+        block = readFromSharedMemoryOf("c3");
+        pthread_cond_signal(&condShm);
+        printf("100 hereeee\n");
+        pthread_mutex_unlock(&mutexShm);
+        sleep(5);
+
+
+    }
+
 //    pthread_mutex_lock(&mutexShm);
 //
 //    pthread_mutex_unlock(&mutexShm);
@@ -109,21 +148,27 @@ int main(int argc,char *argv[])
     n3=atoi(argv[1]);
     fd[0]=atoi(argv[2]);
     fd[1]=atoi(argv[3]);
+    block="0";
 //    printf("fd[0]= %d\n",fd[0]);
 //    printf("fd[1]= %d\n",fd[1]);
-//    printf("n=%d\n",n3);
-    printf("n=%d\n",n1);
+//    printf("n=%d\n",n2);
+//    printf("fd[0]= %d\n",fd[0]);
+//    printf("fd[1]= %d\n",fd[1]);
+//    printf("n=%d\n",n1);
+
     pthread_mutex_init(&mutexShm, NULL);
     pthread_cond_init(&condShm, NULL);
     pthread_t thread_id_task, thread_id_monitor;
 //    printf("Before Thread\n");
     pthread_create(&thread_id_task, NULL, task, NULL);
-    pthread_join(thread_id_task, NULL);
     pthread_create(&thread_id_monitor, NULL, monitor, NULL);
+    pthread_join(thread_id_task, NULL);
     pthread_join(thread_id_monitor, NULL);
-//    printf("After Thread\n");
+
+
     pthread_mutex_destroy(&mutexShm);
     pthread_cond_destroy(&condShm);
+//    printf("After Thread\n");
     exit(0);
     return 0;
 }
