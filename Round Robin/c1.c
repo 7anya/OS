@@ -11,6 +11,7 @@
 #include <errno.h>
 #include <string.h>
 #include "shared_memory.h"
+
 int n1 = 1000000;
 pthread_cond_t condShm;
 pthread_mutex_t mutexShm;
@@ -32,15 +33,15 @@ char *readFromSharedMemory(char *filename) {
     detach_memory_block(block);
     printf("333 Reading:%s\n", temp);
     char *t;
-    t[0]=temp[0];
+    t[0] = temp[0];
     return t;
 }
 
 
 char *readFromSharedMemoryOf(char name[3]) {
     if (strcmp(name, "c1") == 0) {
-        char * temp=readFromSharedMemory("sharedMemoryC1.c");
-        printf("40 %s\n",temp);
+        char *temp = readFromSharedMemory("sharedMemoryC1.c");
+        printf("40 %s\n", temp);
         return temp;
 
     } else if (strcmp(name, "c2") == 0) {
@@ -60,22 +61,30 @@ void *task(void *vargp) {
     printf("in task\n");
 //    block = readFromSharedMemoryOf("c1");
     printf("57: %s\n", block);
-    while (block[0]!='1') {
+    pthread_mutex_lock(&mutexShm);
+    while (block[0] != '1') {
         printf("C1 is waiting/sleeping\n");
         pthread_cond_wait(&condShm, &mutexShm);
-        break;
     }
+    pthread_mutex_unlock(&mutexShm);
+
 //    printf("57\n");
     long long sum = 0;
     for (int i = 0; i <= n1; i++) {
         sum += i;
-        while (*block != '1') {
+        pthread_mutex_lock(&mutexShm);
+
+        while (block[0] != '1') {
             printf("C1 is waiting/sleeping\n");
+            pthread_cond_signal(&condShm);
+//            pthread_mutex_unlock(&mutexShm);
             pthread_cond_wait(&condShm, &mutexShm);
-            break;
         }
+        pthread_mutex_unlock(&mutexShm);
+        printf("sum= %lld\n", sum);
+
     }
-//    printf("%lld",sum);
+    printf("%lld", sum);
 
 //    sleep(1);
 //    printf("Printing GeeksQuiz from Thread \n");
@@ -89,29 +98,34 @@ void *monitor(void *vargp) {
 //    every interval do this
 //    pthread_mutex_lock(&mutexShm);
     printf("in monitor\n");
+
     while (1) {
         pthread_mutex_lock(&mutexShm);
         block = readFromSharedMemoryOf("c1");
-
         pthread_cond_signal(&condShm);
-
+        printf("100 hereeee\n");
         pthread_mutex_unlock(&mutexShm);
         sleep(5);
+
+
     }
+
+    sleep(5);
+
 
 //    pthread_mutex_lock(&mutexShm);
 //
 //    pthread_mutex_unlock(&mutexShm);
-    // checks from shared memeory if its 1, then lets task thread continue or otherwise sleeps it;
+// checks from shared memeory if its 1, then lets task thread continue or otherwise sleeps it;
 
-    // how to put thread to sleep and wake up;
-    //have a conditional variable, whenever this conditional variable is 1, then cool, othwrwise call cond_wait.
+// how to put thread to sleep and wake up;
+//have a conditional variable, whenever this conditional variable is 1, then cool, othwrwise call cond_wait.
 //    conditional variable shoud get its value from shared memeory.
 // So, step, check shared memeory after every interval, and attach mutex lock to conditional variable, conditonal variable
 // call thread_signal from monitor thread;
 // if value is 0, then call thread_cond_wait. from inside tast
 //
-    // monitor task and communicate with master process
+// monitor task and communicate with master process
 
 }
 
@@ -120,6 +134,7 @@ int main(int argc, char *argv[]) {
     n1 = atoi(argv[1]);
     fd[0] = atoi(argv[2]);
     fd[1] = atoi(argv[3]);
+    block = "0";
 //    printf("fd[0]= %d\n",fd[0]);
 //    printf("fd[1]= %d\n",fd[1]);
 //    printf("n=%d\n",n1);
@@ -128,10 +143,11 @@ int main(int argc, char *argv[]) {
     pthread_cond_init(&condShm, NULL);
     pthread_t thread_id_task, thread_id_monitor;
 //    printf("Before Thread\n");
-    pthread_create(&thread_id_monitor, NULL, monitor, NULL);
-    pthread_join(thread_id_monitor, NULL);
     pthread_create(&thread_id_task, NULL, task, NULL);
+    pthread_create(&thread_id_monitor, NULL, monitor, NULL);
     pthread_join(thread_id_task, NULL);
+    pthread_join(thread_id_monitor, NULL);
+
 
     pthread_mutex_destroy(&mutexShm);
     pthread_cond_destroy(&condShm);
