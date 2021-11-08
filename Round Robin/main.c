@@ -115,9 +115,9 @@ int main(int argc, char *argv[]) {
     bool isvalid[3];
     memset(isvalid, true, sizeof(isvalid));
     //Round robing scheduling of proecesses
-//    writeToSharedMemoryOf("c1", "0");
-//    writeToSharedMemoryOf("c2", "0");
-//    writeToSharedMemoryOf("c3", "0");
+    writeToSharedMemoryOf("c1", "0");
+    writeToSharedMemoryOf("c2", "0");
+    writeToSharedMemoryOf("c3", "0");
     while (1) {
         if (count % 3 == 0) {
             if (!isvalid[count % 3])
