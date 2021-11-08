@@ -177,6 +177,78 @@ PipeGuide/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/PipeGuide/main.c.s
 .PHONY : PipeGuide/main.c.s
 
+Round_Robin/sharedMemoryC1.o: Round_Robin/sharedMemoryC1.c.o
+.PHONY : Round_Robin/sharedMemoryC1.o
+
+# target to build an object file
+Round_Robin/sharedMemoryC1.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/Round_Robin/sharedMemoryC1.c.o
+.PHONY : Round_Robin/sharedMemoryC1.c.o
+
+Round_Robin/sharedMemoryC1.i: Round_Robin/sharedMemoryC1.c.i
+.PHONY : Round_Robin/sharedMemoryC1.i
+
+# target to preprocess a source file
+Round_Robin/sharedMemoryC1.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/Round_Robin/sharedMemoryC1.c.i
+.PHONY : Round_Robin/sharedMemoryC1.c.i
+
+Round_Robin/sharedMemoryC1.s: Round_Robin/sharedMemoryC1.c.s
+.PHONY : Round_Robin/sharedMemoryC1.s
+
+# target to generate assembly for a file
+Round_Robin/sharedMemoryC1.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/Round_Robin/sharedMemoryC1.c.s
+.PHONY : Round_Robin/sharedMemoryC1.c.s
+
+Round_Robin/sharedMemoryC2.o: Round_Robin/sharedMemoryC2.c.o
+.PHONY : Round_Robin/sharedMemoryC2.o
+
+# target to build an object file
+Round_Robin/sharedMemoryC2.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/Round_Robin/sharedMemoryC2.c.o
+.PHONY : Round_Robin/sharedMemoryC2.c.o
+
+Round_Robin/sharedMemoryC2.i: Round_Robin/sharedMemoryC2.c.i
+.PHONY : Round_Robin/sharedMemoryC2.i
+
+# target to preprocess a source file
+Round_Robin/sharedMemoryC2.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/Round_Robin/sharedMemoryC2.c.i
+.PHONY : Round_Robin/sharedMemoryC2.c.i
+
+Round_Robin/sharedMemoryC2.s: Round_Robin/sharedMemoryC2.c.s
+.PHONY : Round_Robin/sharedMemoryC2.s
+
+# target to generate assembly for a file
+Round_Robin/sharedMemoryC2.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/Round_Robin/sharedMemoryC2.c.s
+.PHONY : Round_Robin/sharedMemoryC2.c.s
+
+Round_Robin/sharedMemoryC3.o: Round_Robin/sharedMemoryC3.c.o
+.PHONY : Round_Robin/sharedMemoryC3.o
+
+# target to build an object file
+Round_Robin/sharedMemoryC3.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/Round_Robin/sharedMemoryC3.c.o
+.PHONY : Round_Robin/sharedMemoryC3.c.o
+
+Round_Robin/sharedMemoryC3.i: Round_Robin/sharedMemoryC3.c.i
+.PHONY : Round_Robin/sharedMemoryC3.i
+
+# target to preprocess a source file
+Round_Robin/sharedMemoryC3.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/Round_Robin/sharedMemoryC3.c.i
+.PHONY : Round_Robin/sharedMemoryC3.c.i
+
+Round_Robin/sharedMemoryC3.s: Round_Robin/sharedMemoryC3.c.s
+.PHONY : Round_Robin/sharedMemoryC3.s
+
+# target to generate assembly for a file
+Round_Robin/sharedMemoryC3.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OS.dir/build.make CMakeFiles/OS.dir/Round_Robin/sharedMemoryC3.c.s
+.PHONY : Round_Robin/sharedMemoryC3.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +264,15 @@ help:
 	@echo "... PipeGuide/main.o"
 	@echo "... PipeGuide/main.i"
 	@echo "... PipeGuide/main.s"
+	@echo "... Round_Robin/sharedMemoryC1.o"
+	@echo "... Round_Robin/sharedMemoryC1.i"
+	@echo "... Round_Robin/sharedMemoryC1.s"
+	@echo "... Round_Robin/sharedMemoryC2.o"
+	@echo "... Round_Robin/sharedMemoryC2.i"
+	@echo "... Round_Robin/sharedMemoryC2.s"
+	@echo "... Round_Robin/sharedMemoryC3.o"
+	@echo "... Round_Robin/sharedMemoryC3.i"
+	@echo "... Round_Robin/sharedMemoryC3.s"
 .PHONY : help
 
 

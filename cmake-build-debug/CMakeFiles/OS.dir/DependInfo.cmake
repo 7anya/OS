@@ -10,6 +10,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/home/tokoyama/Documents/OS/GuideToConditionalWait/main.c" "/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles/OS.dir/GuideToConditionalWait/main.c.o"
   "/home/tokoyama/Documents/OS/PipeGuide/main.c" "/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles/OS.dir/PipeGuide/main.c.o"
+  "/home/tokoyama/Documents/OS/Round Robin/sharedMemoryC1.c" "/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles/OS.dir/Round_Robin/sharedMemoryC1.c.o"
+  "/home/tokoyama/Documents/OS/Round Robin/sharedMemoryC2.c" "/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles/OS.dir/Round_Robin/sharedMemoryC2.c.o"
+  "/home/tokoyama/Documents/OS/Round Robin/sharedMemoryC3.c" "/home/tokoyama/Documents/OS/cmake-build-debug/CMakeFiles/OS.dir/Round_Robin/sharedMemoryC3.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

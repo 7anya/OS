@@ -72,10 +72,7 @@ void c1(int fd_c1[], int fd_c2[], int fd_c3[], int n1, int n2, int n3) {
     int pid_c1 = fork();
     if (pid_c1 == 0) { // child process
 //        printf("inside child\n");
-
         runC1(fd_c1, n1);
-
-
     } else {
         wait(NULL);
 //        printf("inside parent\n");

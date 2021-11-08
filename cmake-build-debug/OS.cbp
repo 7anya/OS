@@ -84,6 +84,15 @@
 		<Unit filename="/home/tokoyama/Documents/OS/PipeGuide/main.c">
 			<Option target="OS"/>
 		</Unit>
+		<Unit filename="/home/tokoyama/Documents/OS/Round Robin/sharedMemoryC1.c">
+			<Option target="OS"/>
+		</Unit>
+		<Unit filename="/home/tokoyama/Documents/OS/Round Robin/sharedMemoryC2.c">
+			<Option target="OS"/>
+		</Unit>
+		<Unit filename="/home/tokoyama/Documents/OS/Round Robin/sharedMemoryC3.c">
+			<Option target="OS"/>
+		</Unit>
 		<Unit filename="/home/tokoyama/Documents/OS/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "shared_memory.h"
+#include <stdbool.h>
+#include <time.h>
 
 char *to_string(int x) {
     int length = snprintf(NULL, 0, "%d", x);
@@ -63,14 +65,15 @@ int writeToSharedMemory(char *filename, char *data) {
 
 void writeToSharedMemoryOf(char name[3], char *data) {
     if (strcmp(name, "c1") == 0) {
-        writeToSharedMemory("sharedMemC1.c", data);
+        writeToSharedMemory("sharedMemoryC1.c", data);
 
-    } else if (strcmpi(name, "c2") == 0) {
-        writeToSharedMemory("sharedMemC2.c", data);
+    } else if (strcmp(name, "c2") == 0) {
+        writeToSharedMemory("sharedMemoryC2.c", data);
 
     } else
-        writeToSharedMemory("sharedMemC3.c", data);
+        writeToSharedMemory("sharedMemoryC3.c", data);
 }
+
 
 //void readFromSharedMemoryOf(char name[3]) {
 //    if (strcmp(name, "c1") == 0) {
@@ -91,7 +94,7 @@ int main(int argc, char *argv[]) {
     scanf("%d %d %d", &n1, &n2, &n3);
     int timeQuantum;
     printf("Input time quantum in nano seconds");
-    scanf("%d ",&timeQuantum);
+    scanf("%d ", &timeQuantum);
 
     if (pipe(fd_c1) == -1) {
         printf("error opening pipe");
@@ -105,7 +108,50 @@ int main(int argc, char *argv[]) {
         printf("error opening pipe");
         return 1;
     }
-
+//    struct timespec tim;
+//    tim.tv_sec  = 0;
+//    tim.tv_nsec = timeQuantum;
+    int count = 0;
+    bool isvalid[3];
+    memset(isvalid, true, sizeof(isvalid));
+    //Round robing scheduling of proecesses
+    writeToSharedMemoryOf("c1", "1");
+    writeToSharedMemoryOf("c2", "0");
+    writeToSharedMemoryOf("c3", "0");
+//    while (1) {
+//        if (count % 3 == 0) {
+//            if (!isvalid[count % 3])
+//                continue;
+//            writeToSharedMemoryOf("c1", "1");
+//            writeToSharedMemoryOf("c2", "0");
+//            writeToSharedMemoryOf("c3", "0");
+//            nanosleep((const struct timespec[]) {{0, timeQuantum}}, NULL);
+//            writeToSharedMemoryOf("c1", "0");
+//            writeToSharedMemoryOf("c2", "0");
+//            writeToSharedMemoryOf("c3", "0");
+//        } else if (count % 3 == 1) {
+//            if (!isvalid[count % 3])
+//                continue;
+//            writeToSharedMemoryOf("c1", "0");
+//            writeToSharedMemoryOf("c2", "1");
+//            writeToSharedMemoryOf("c3", "0");
+//            nanosleep((const struct timespec[]) {{0, timeQuantum}}, NULL);
+//            writeToSharedMemoryOf("c1", "0");
+//            writeToSharedMemoryOf("c2", "0");
+//            writeToSharedMemoryOf("c3", "0");
+//        } else {
+//            if (!isvalid[count % 3])
+//                continue;
+//            writeToSharedMemoryOf("c1", "0");
+//            writeToSharedMemoryOf("c2", "0");
+//            writeToSharedMemoryOf("c3", "1");
+//            nanosleep((const struct timespec[]) {{0, timeQuantum}}, NULL);
+//            writeToSharedMemoryOf("c1", "0");
+//            writeToSharedMemoryOf("c2", "0");
+//            writeToSharedMemoryOf("c3", "0");
+//        }
+//        count++;
+//    }
 //    runC1() but then after timequantum set shared memeory of C1 to '0' & run runC2(), and after timequantum set c2 shared memory to 0 & run c3
 //    , and after a time quantum set shared mem of C3 to 0 and continue with C1
 // if one of the processes has already ended, then move on to next process

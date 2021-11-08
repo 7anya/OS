@@ -36,7 +36,7 @@ char *attach_memory_block(char *filename, int size) {
         return NULL;
     //map the shared block into this process's memory and give me a pointer to it
     result = shmat(shared_block_id, NULL, 0);
-    printf(" #37 %s",result);
+    printf(" #37 %s\n ",result);
     if (result == (char *) IPC_RESULT_ERROR) {
         return NULL;
     }
