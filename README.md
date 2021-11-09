@@ -8,6 +8,7 @@
 To run FFCS,
 
  > cd FFCS
+ 
  > ./run.sh
  
 to run RR
