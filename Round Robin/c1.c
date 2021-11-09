@@ -11,7 +11,7 @@
 #include <errno.h>
 #include <string.h>
 #include "shared_memory.h"
-
+#include <stdbool.h>
 int n1 = 1000000;
 pthread_cond_t condShm;
 pthread_mutex_t mutexShm;
@@ -84,7 +84,10 @@ void *task(void *vargp) {
         printf("sum= %lld\n", sum);
 
     }
-    printf("%lld", sum);
+    printf("87= %lld\n", sum);
+    isvalid[0]=false;
+    printf("\nisvalid=%d,%d,%d\n",isvalid[0],isvalid[1],isvalid[2]);
+
 
 //    sleep(1);
 //    printf("Printing GeeksQuiz from Thread \n");
@@ -105,12 +108,15 @@ void *monitor(void *vargp) {
         pthread_cond_signal(&condShm);
         printf("100 hereeee\n");
         pthread_mutex_unlock(&mutexShm);
-        sleep(5);
-
+        usleep(20);
+        if(!isvalid[0])
+        {
+            break;
+        }
 
     }
 
-    sleep(5);
+//    sleep(5);
 
 
 //    pthread_mutex_lock(&mutexShm);
@@ -135,6 +141,7 @@ int main(int argc, char *argv[]) {
     fd[0] = atoi(argv[2]);
     fd[1] = atoi(argv[3]);
     block = "0";
+    isvalid[0]=1;
 //    printf("fd[0]= %d\n",fd[0]);
 //    printf("fd[1]= %d\n",fd[1]);
 //    printf("n=%d\n",n1);

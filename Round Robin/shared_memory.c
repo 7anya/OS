@@ -31,12 +31,12 @@ static int get_shared_block(char *filename, int size) {
 char *attach_memory_block(char *filename, int size) {
     int shared_block_id = get_shared_block(filename, size);
     char *result;
-    printf("id:%d\n",shared_block_id);
+//    printf("id:%d\n",shared_block_id);
     if (shared_block_id == IPC_RESULT_ERROR)
         return NULL;
     //map the shared block into this process's memory and give me a pointer to it
     result = shmat(shared_block_id, NULL, 0);
-    printf(" #37 %s\n ",result);
+//    printf(" #37 %s\n ",result);
     if (result == (char *) IPC_RESULT_ERROR) {
         return NULL;
     }

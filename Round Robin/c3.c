@@ -106,6 +106,10 @@ void *task(void *vargp)
     fclose(fp);
     if (line)
         free(line);
+    isvalid[2]=false;
+    printf("\nisvalid=%d,%d,%d\n",isvalid[0],isvalid[1],isvalid[2]);
+
+
     exit(EXIT_SUCCESS);
     return NULL;
 }
@@ -121,7 +125,11 @@ void *monitor(void *vargp){
         pthread_cond_signal(&condShm);
         printf("100 hereeee\n");
         pthread_mutex_unlock(&mutexShm);
-        sleep(5);
+        usleep(20);
+        if(!isvalid[2])
+        {
+            break;
+        }
 
 
     }
@@ -149,6 +157,8 @@ int main(int argc,char *argv[])
     fd[0]=atoi(argv[2]);
     fd[1]=atoi(argv[3]);
     block="0";
+    isvalid[2]=1;
+
 //    printf("fd[0]= %d\n",fd[0]);
 //    printf("fd[1]= %d\n",fd[1]);
 //    printf("n=%d\n",n2);

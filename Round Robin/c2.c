@@ -17,6 +17,7 @@
 #include <errno.h>
 #include <string.h>
 #include "shared_memory.h"
+
 int n2 = 6;
 int fd[2];
 pthread_cond_t condShm;
@@ -69,7 +70,7 @@ void *task(void *vargp) {
     printf("57: %s\n", block);
     pthread_mutex_lock(&mutexShm);
     while (block[0] != '1') {
-        printf("C1 is waiting/sleeping\n");
+        printf("C3 is waiting/sleeping\n");
         pthread_cond_wait(&condShm, &mutexShm);
     }
     pthread_mutex_unlock(&mutexShm);
@@ -87,7 +88,7 @@ void *task(void *vargp) {
         pthread_mutex_lock(&mutexShm);
 
         while (block[0] != '1') {
-            printf("C1 is waiting/sleeping\n");
+            printf("C3 is waiting/sleeping\n");
             pthread_cond_signal(&condShm);
 //            pthread_mutex_unlock(&mutexShm);
             pthread_cond_wait(&condShm, &mutexShm);
@@ -99,6 +100,8 @@ void *task(void *vargp) {
     fclose(fp);
     if (line)
         free(line);
+    isvalid[1] = false;
+    printf("\nisvalid=%d,%d,%d\n",isvalid[0],isvalid[1],isvalid[2]);
     exit(EXIT_SUCCESS);
     return NULL;
 }
@@ -116,8 +119,10 @@ void *monitor(void *vargp) {
         pthread_cond_signal(&condShm);
         printf("100 hereeee\n");
         pthread_mutex_unlock(&mutexShm);
-        sleep(5);
-
+        usleep(20);
+        if (!isvalid[1]) {
+            break;
+        }
 
     }
 
@@ -143,7 +148,9 @@ int main(int argc, char *argv[]) {
     n2 = atoi(argv[1]);
     fd[0] = atoi(argv[2]);
     fd[1] = atoi(argv[3]);
-    block="0";
+    block = "0";
+    isvalid[1] = 1;
+
 //    printf("fd[0]= %d\n",fd[0]);
 //    printf("fd[1]= %d\n",fd[1]);
 //    printf("n=%d\n",n2);

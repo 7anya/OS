@@ -95,7 +95,13 @@ int main(int argc, char *argv[]) {
     int timeQuantum;
     printf("Input time quantum in nano seconds");
     scanf("%d", &timeQuantum);
+    pid_t id= fork();
 
+    if(id==0)
+    {
+        char *args[] = {"/setup", to_string(n1), to_string(n2), to_string(n3), to_string(fd_c1[0]), to_string(fd_c1[1]),to_string(fd_c2[0]), to_string(fd_c2[1]),to_string(fd_c3[0]), to_string(fd_c3[1]) NULL};
+        execv("setup", args);
+    }
     if (pipe(fd_c1) == -1) {
         printf("error opening pipe");
         return 1;
@@ -108,11 +114,7 @@ int main(int argc, char *argv[]) {
         printf("error opening pipe");
         return 1;
     }
-//    struct timespec tim;
-//    tim.tv_sec  = 0;
-//    tim.tv_nsec = timeQuantum;
     int count = 0;
-    bool isvalid[3];
     memset(isvalid, true, sizeof(isvalid));
     //Round robing scheduling of proecesses
     writeToSharedMemoryOf("c1", "0");
@@ -149,6 +151,12 @@ int main(int argc, char *argv[]) {
             writeToSharedMemoryOf("c1", "0");
             writeToSharedMemoryOf("c2", "0");
             writeToSharedMemoryOf("c3", "0");
+        }
+        printf("isvalid= %d,%d,%d",isvalid[0],isvalid[1],isvalid[2]);
+        if(isvalid[0]==false && isvalid[1]==false && isvalid[2]==false)
+        {
+            printf("All processes done\n ");
+            break;
         }
         count++;
     }
