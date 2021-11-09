@@ -153,9 +153,10 @@ void *monitor(void *vargp){
 int main(int argc,char *argv[])
 {
 //    printf("arg =%s\n",argv[1]);
-    n3=atoi(argv[1]);
-    fd[0]=atoi(argv[2]);
-    fd[1]=atoi(argv[3]);
+    printf("enter n3: ");
+    scanf("%d",&n3);
+//    n3=atoi(argv[1]);
+
     block="0";
     isvalid[2]=1;
 

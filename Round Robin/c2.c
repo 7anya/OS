@@ -101,7 +101,7 @@ void *task(void *vargp) {
     if (line)
         free(line);
     isvalid[1] = false;
-    printf("\nisvalid=%d,%d,%d\n",isvalid[0],isvalid[1],isvalid[2]);
+    printf("\nisvalid=%d,%d,%d\n", isvalid[0], isvalid[1], isvalid[2]);
     exit(EXIT_SUCCESS);
     return NULL;
 }
@@ -145,9 +145,9 @@ void *monitor(void *vargp) {
 
 int main(int argc, char *argv[]) {
 //    printf("arg =%s\n",argv[1]);
-    n2 = atoi(argv[1]);
-    fd[0] = atoi(argv[2]);
-    fd[1] = atoi(argv[3]);
+    printf("enter n2");
+    scanf("%d", &n2);
+
     block = "0";
     isvalid[1] = 1;
 
