@@ -19,6 +19,7 @@ once ./main is run, all 3 porcesses c1,c2,c3 will leave waiting state and start 
 
 give n1,n2,n3 with values of 20,000,000 and time quantum of 1-5 units 
 
+currently the numbers are read only from a single file numbers.txt but support can be extended to multiple files
 
 
 
