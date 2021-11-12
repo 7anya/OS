@@ -1,4 +1,0 @@
-#!/bin/bash
-
-parallel -u ::: io.elementary.terminal -x ./c1 $1 $4 $5 io.elementary.terminal -x ./c2 $2 $6 $7 io.elementary.terminal -x ./c3 $3 $8 $9
-
