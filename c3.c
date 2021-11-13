@@ -1,15 +1,3 @@
-#include    <stdio.h>
-#include    <stdlib.h>
-#include    <string.h>
-#include    <stdint.h>
-#include    <stdbool.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/types.h>	
-#include    <unistd.h>
-#include    <pthread.h>
-#include <time.h>
-#include <sys/time.h>
 #include    "utility.h"
 
 pthread_cond_t cond_shm;
@@ -17,21 +5,6 @@ pthread_mutex_t mutex_shm;
 int n3;
 bool task_is_done = false;
 bool can_run = false;
-
-void outputDataToPipe(char* str){
-
-	int fd;
-
-    // FIFO file path
-    	char * myfifo = "/tmp/c3Data";
-    // Creating the named file(FIFO)
-    // mkfifo(<pathname>, <permission>)
-    	mkfifo(myfifo, 0666);
-        fd = open(myfifo, O_WRONLY);
-        write(fd, str, sizeof(str) + 2);
-        close(fd);
-
-}
 
 // This is our main task thread.
 void* task(void* vargp) 
@@ -75,7 +48,7 @@ void* task(void* vargp)
 	char numval[80];
 	sprintf(numval, "%llu", sum);
 	//uncomment this pipe line @Kevin to begin the writing
-	//outputDataToPipe(numval);
+	write_to_pipe("/tmp/c3_data", numval, strlen(numval) + 1);
     printf("[C3] PID #%d. Sum: %llu\n", getpid(), sum);
     fflush(stdout);
     task_is_done = true;

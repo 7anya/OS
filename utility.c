@@ -1,12 +1,3 @@
-#include    <stdio.h>
-#include    <stdlib.h>
-#include    <string.h>
-#include    <stdbool.h>
-
-#include    <sys/types.h>
-#include    <sys/ipc.h>
-#include    <sys/shm.h>
-
 #include    "utility.h"
 
 #define     FAILURE     -1
@@ -36,7 +27,7 @@ bool* attach_memory_block(char* filename, int size)
     }    
     //map the shared block into this process's memory and get a pointer to it.
     result = shmat(shared_block_id, NULL, 0);
-    if (result == FAILURE) 
+    if (result == (void*)FAILURE) 
     {
         fprintf(stderr, "%s: Error at line %d\n", __FILE__, __LINE__);        
         return NULL;
@@ -90,4 +81,25 @@ void write_to_shared_memory(char* filename, bool status)
     block[0] = status;
     detach_memory_block(block);
     return;
+}
+
+void write_to_pipe(char* filename, char* str, int str_size)
+{
+    	int fd;
+    	char * myfifo = "/tmp/c1Data";
+    	mkfifo(filename, 0666);
+        fd = open(filename, O_WRONLY);
+        write(fd, str, str_size);
+        close(fd);
+}
+
+void* read_from_pipe(void* filename)
+{
+
+    char str[32];
+    int fd = open((char*)filename, O_RDONLY);
+    read(fd, str, sizeof(str));
+    printf("Pipe spits out %s\n", str);
+    close(fd);
+    return NULL;
 }

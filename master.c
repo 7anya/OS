@@ -1,27 +1,19 @@
-#include    <stdio.h>
-#include    <stdlib.h>
-#include    <string.h>
-#include    <stdbool.h>
-#include    <stdint.h>
-#include    <limits.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include    <unistd.h>
-#include    <sys/wait.h>
-#include <time.h>
-#include <sys/time.h>
 #include    "utility.h"
 
-int readDataFromPipe(char* pipename, char *str1){
+bool        subprocessed_exited = false;
+char*       pipe_filenames[] = {"/tmp/c1_data", "/tmp/c2_data", "/tmp/c3_data"};
 
-    int fd1;
-    fd1 = open(pipename, O_RDONLY);
-    read(fd1, str1, 80);
-
-    // Print the read string and close
-    printf("Pipe spits out %s\n", str1);
-    close(fd1);
+void* pied_piper(void* vargp)
+{
+    int status;
+    int pid;
+    for(int i = 0; i < 3; i++)
+    {
+        pid = wait(&status);
+        printf("[M] Child #%d has exited.\n", pid);
+    }
+    subprocessed_exited = true;
+    return NULL;
 }
 
 int main(int argc, char** argv)
@@ -53,9 +45,14 @@ int main(int argc, char** argv)
     printf("Time Quantum for RR in microseconds: ");
     scanf("%d", &time_quantum);
 
+    pthread_t pied_piper_thread, c1_output_thread, c2_output_thread, c3_output_thread;
+    pthread_create(&c1_output_thread, NULL, read_from_pipe, pipe_filenames[0]);
+    pthread_create(&c2_output_thread, NULL, read_from_pipe, pipe_filenames[1]);
+    pthread_create(&c3_output_thread, NULL, read_from_pipe, pipe_filenames[2]);       
+
     write_to_shared_memory("c1.c", false);
     write_to_shared_memory("c2.c", false);
-    write_to_shared_memory("c3.c", false);        
+    write_to_shared_memory("c3.c", false);      
 	t = clock();
     time_taken = ((double)t)/CLOCKS_PER_SEC;
     printf("Child 1 starts at %f seconds \n", time_taken);
@@ -94,20 +91,20 @@ int main(int argc, char** argv)
             else
             {
 // parent can now setup scheduling.
-                for(uint64_t i = 0; i < INT64_MAX; i++)
+                pthread_create(&pied_piper_thread, NULL, pied_piper, NULL);
+
+                for(uint64_t i = 0; subprocessed_exited == false; i++)
                 {
                     write_to_shared_memory("c1.c", ((i % 3) == 0));
                     write_to_shared_memory("c2.c", ((i % 3) == 1));
                     write_to_shared_memory("c3.c", ((i % 3) == 2));   
                     usleep(time_quantum);                      
                 }
-                        //uncomment this pipe line @Kevin to begin the reading
-                //readDataFromPipe("/tmp/c1Data", str);
-                fflush(stdout);
-                //readDataFromPipe("/tmp/c2Data", str);
-                fflush(stdout);
-                //readDataFromPipe("/tmp/c3Data", str);
-                fflush(stdout);
+
+                pthread_join(pied_piper_thread, NULL);
+                pthread_join(c1_output_thread, NULL);
+                pthread_join(c2_output_thread, NULL);
+                pthread_join(c3_output_thread, NULL);                                
             } 
         }
     }

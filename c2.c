@@ -1,15 +1,3 @@
-#include    <stdio.h>
-#include    <stdlib.h>
-#include    <string.h>
-#include    <stdint.h>
-#include    <stdbool.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include    <unistd.h>
-#include    <pthread.h>
-#include <time.h>
-#include <sys/time.h>
 #include    "utility.h"
 
 pthread_cond_t cond_shm;
@@ -17,20 +5,6 @@ pthread_mutex_t mutex_shm;
 int n2;
 bool task_is_done = false;
 bool can_run = false;
-
-void outputDataToPipe(){
-
-	int fd;
-
-    	//FIFO file path
-    	char * myfifo = "/tmp/c2Data";
-    	char arr2[80] = "DONE PRINTING";	
-    	mkfifo(myfifo, 0666);
-        fd = open(myfifo, O_WRONLY);
-        write(fd, arr2, sizeof(arr2) + 2);
-        close(fd);
-}
-
 
 // This is our main task thread.
 void* task(void* vargp) 
@@ -69,9 +43,7 @@ void* task(void* vargp)
         pthread_mutex_unlock(&mutex_shm);
     }
 
-// Sanket, insert named pipes here.
-        //uncomment this pipe line @Kevin to begin the writing
-	//outputDataToPipe();
+	write_to_pipe("/tmp/c2_data", "DONE PRINTING", 14);
     task_is_done = true;
 
     return NULL;

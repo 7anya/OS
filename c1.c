@@ -1,26 +1,4 @@
-#include    <stdio.h>
-#include    <stdlib.h>
-#include    <string.h>
-#include    <stdint.h>
-#include    <stdbool.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include    <unistd.h>
-#include    <pthread.h>
-#include <time.h>
-#include <sys/time.h>
 #include    "utility.h"
-
-void outputDataToPipe(char* str){
-	int fd;
-    	char * myfifo = "/tmp/c1Data";
-    	mkfifo(myfifo, 0666);
-        fd = open(myfifo, O_WRONLY);
-        write(fd, str, sizeof(str));
-        close(fd);
-}
-
 
 pthread_cond_t cond_shm;
 pthread_mutex_t mutex_shm;
@@ -57,11 +35,10 @@ void* task(void* vargp)
         pthread_mutex_unlock(&mutex_shm);
     }
 
-// Sanket, insert named pipes here.
         char numval[80];
         sprintf(numval, "%llu", sum);
         //uncomment this pipe line @Kevin to begin the writing
-        //outputDataToPipe(numval);
+        write_to_pipe("/tmp/c1_data", numval, strlen(numval) + 1);
         
     printf("[C1] PID #%d. Sum: %llu\n", getpid(), sum);
     fflush(stdout);
@@ -95,8 +72,8 @@ int main(int argc, char** argv)
             can_run = read_from_shared_memory("c1.c");
             usleep(1);
 			t = clock() - t;
-			double time_taken = ((double)t)/CLOCKS_PER_SEC;
-			wait_time+=time_taken;
+			double time_taken = ((double)t) / CLOCKS_PER_SEC;
+			wait_time += time_taken;
         }        
         pthread_mutex_lock(&mutex_shm);
         pthread_cond_signal(&cond_shm);

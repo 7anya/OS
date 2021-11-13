@@ -1,6 +1,9 @@
 #! bin/bash
 
 killall master
+killall c1
+killall c2
+killall c3
 
 rm c1
 rm c2
