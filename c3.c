@@ -49,7 +49,6 @@ void* task(void* vargp)
 	sprintf(numval, "%llu", sum);
 	//uncomment this pipe line @Kevin to begin the writing
 	write_to_pipe("/tmp/c3_data", numval, strlen(numval) + 1);
-    printf("[C3] PID #%d. Sum: %llu\n", getpid(), sum);
     fflush(stdout);
     task_is_done = true;
 
