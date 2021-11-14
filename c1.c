@@ -92,6 +92,13 @@ int main(int argc, char** argv)
     gettimeofday(&end_c1, NULL);
     total_c1.tv_sec=end_c1.tv_sec - start_c1.tv_sec;
 	total_c1.tv_usec=end_c1.tv_usec - start_c1.tv_usec;
+    FILE *fp1 = fopen("graph_c1.csv", "a+");
+    if (!fp1) {
+        printf("Can't open file");
+    } else {
+        fprintf(fp1, "%d, %lf, %ld, %ld\n", n1, wait_time, total_c1.tv_sec, total_c1.tv_usec);
+        fclose(fp1);
+    }
 	printf("WT FOR CHILD 1 :- %lf seconds\n", wait_time);			
 	printf("TAT FOR CHILD 1 :- seconds : %ld\nmicro seconds : %ld\n", total_c1.tv_sec, total_c1.tv_usec); 			
     return 0;
