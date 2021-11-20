@@ -1,4 +1,4 @@
-
+<img src="https://badges.pufler.dev/visits/7anya/OS?style=for-the-badge&color=red" /></a>
 
 ## Description
 
